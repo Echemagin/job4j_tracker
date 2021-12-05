@@ -54,7 +54,6 @@ public class Tracker {
             items[index] = item;
             return true;
         }
-        System.out.println("Can't find item by this id");
         return false;
     }
 
@@ -66,7 +65,6 @@ public class Tracker {
             size--;
             return true;
         }
-        System.out.println("Can't find item by this id");
         return false;
     }
 }
