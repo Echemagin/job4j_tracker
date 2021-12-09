@@ -14,11 +14,11 @@ public class Item {
     public Item() {
     }
 
-    public Item(String name){
+    public Item(String name) {
         this.name = name;
     }
 
-    public Item(int id, String name){
+    public Item(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -45,10 +45,10 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", created=" + created.format(FORMATTER) +
-                '}';
+        return "Item{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", created=" + created.format(FORMATTER)
+                + '}';
     }
 }
