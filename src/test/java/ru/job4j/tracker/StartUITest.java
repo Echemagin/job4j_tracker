@@ -91,7 +91,6 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item first = tracker.add(new Item("test1"));
         Item second = tracker.add(new Item("test10"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -106,10 +105,8 @@ public class StartUITest {
                         + "0. Show all items" + ln
                         + "1. Exit" + ln
                         + "=== Show all items ===" + ln
-                        + "Item{id=" + first.getId() + ", name='" + first.getName()
-                        + "', created=" + first.getCreated().format(formatter) + "}" + ln
-                        + "Item{id=" + second.getId() + ", name='" + second.getName()
-                        + "', created=" + second.getCreated().format(formatter) + "}" + ln
+                        + first + ln
+                        + second + ln
                         + "Menu:" + ln
                         + "0. Show all items" + ln
                         + "1. Exit" + ln
@@ -124,7 +121,6 @@ public class StartUITest {
         Item first = tracker.add(new Item("test1"));
         Item second = tracker.add(new Item("test10"));
         Item third = tracker.add(new Item("test1"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         Input in = new StubInput(
                 new String[] {"0", first.getName(), "1"}
         );
@@ -139,10 +135,8 @@ public class StartUITest {
                         + "0. Find item by name" + ln
                         + "1. Exit" + ln
                         + "=== Find items by name ===" + ln
-                        + "Item{id=" + first.getId() + ", name='" + first.getName()
-                        + "', created=" + first.getCreated().format(formatter) + "}" + ln
-                        + "Item{id=" + third.getId() + ", name='" + third.getName()
-                        + "', created=" + third.getCreated().format(formatter) + "}" + ln
+                        + first + ln
+                        + third + ln
                         + "Menu:" + ln
                         + "0. Find item by name" + ln
                         + "1. Exit" + ln
@@ -156,7 +150,6 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item first = tracker.add(new Item("test1"));
         Item second = tracker.add(new Item("test10"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(second.getId()), "1"}
         );
@@ -171,8 +164,7 @@ public class StartUITest {
                         + "0. Find item by id" + ln
                         + "1. Exit" + ln
                         + "=== Find item by id ===" + ln
-                        + "Item{id=" + second.getId() + ", name='" + second.getName()
-                        + "', created=" + second.getCreated().format(formatter) + "}" + ln
+                        + second + ln
                         + "Menu:" + ln
                         + "0. Find item by id" + ln
                         + "1. Exit" + ln
