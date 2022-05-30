@@ -3,6 +3,8 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -16,12 +18,12 @@ public class StartUITest {
                 new String[] {"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new CreateAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Item name"));
+        assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
 
     @Test
@@ -33,10 +35,10 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
         );
-        UserAction[] actions = {
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new EditAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
@@ -49,10 +51,10 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
-        UserAction[] actions = {
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new DeleteAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
@@ -66,10 +68,10 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new EditAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -94,10 +96,10 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new ShowAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -124,10 +126,10 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", first.getName(), "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new FindByNameAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -153,10 +155,10 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(second.getId()), "1"}
         );
-        UserAction[] actions = new UserAction[]{
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new FindByIdAction(out),
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -179,9 +181,9 @@ public class StartUITest {
                 new String[] {"9", "0"}
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = new UserAction[]{
+        ArrayList<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new FinishAction(out)
-        };
+        ));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
