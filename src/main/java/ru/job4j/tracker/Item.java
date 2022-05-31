@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import static java.time.LocalDateTime.now;
 
@@ -50,5 +51,23 @@ public class Item {
                 + ", name='" + name + '\''
                 + ", created=" + created.format(FORMATTER)
                 + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return getId() == item.getId()
+                && Objects.equals(getName(), item.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getCreated());
     }
 }
