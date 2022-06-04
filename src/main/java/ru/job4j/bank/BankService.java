@@ -54,14 +54,12 @@ public class BankService {
      * @return возвращает объект Optional<Account> искомого пользователя.
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        var user = findByPassport(passport);
-        if (user.isPresent()) {
-            List<Account> list = users.get(user.get());
-            return list.stream()
-                    .filter(account -> account.getRequisite().equals(requisite))
-                    .findFirst();
-        }
-        return Optional.empty();
+        return findByPassport(passport)
+                .flatMap(value -> users.get(value)
+                        .stream()
+                        .filter(account -> account.getRequisite().equals(requisite))
+                        .findFirst()
+                );
     }
 
     /**
